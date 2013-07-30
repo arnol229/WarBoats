@@ -3,9 +3,6 @@
 # mark X for spots missed on the board
 # rounds of fire? multiple spot submissions -> evaluate
 
-
-
-
 from random import randint
 
 board = []
