@@ -24,11 +24,10 @@ def get_board(input):
     input.lower()
     if input == "create":
         size = raw_input("please enter the dimensions (format #x#): ")
-        print "Generating your board with {} rows and {} collumns..."
         row_size = int(size[0])
         col_size = int(size[2])
         #how do i get string concatenation working below?
-        print "Generating your board with {row_size} rows and {col_size} collumns..."
+        print "Generating your board with {} rows and {} collumns...".format(row_size, col_size)
         print row_size, col_size
         gen_board(row_size, col_size)
     elif input == "random":
@@ -52,8 +51,10 @@ def gen_board(rows, cols):
 # Why is this printing so many rows? maybe problem is in gen_board?
 def print_board(board):
     for row in board:
+        col_list = []
         for col in row:
-            print " ".join(row).format(col)
+            col_list.append(col)
+        print " ".join(col_list)
 
 # place ship will call acceptable_spots to find valid places to put ships
 # after choosing a certain spot, it must then remove the spot from acc_spots
@@ -62,4 +63,3 @@ def print_board(board):
 # def place_ship():
         
 get_board(str(raw_input("please choose : Create / Random: ")))
-
