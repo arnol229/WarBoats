@@ -63,3 +63,7 @@ def print_board(board):
 # def place_ship():
         
 get_board(str(raw_input("please choose : Create / Random: ")))
+
+
+
+#LOL THIS IS A CHANGE SO THAT I CAN COMMIT AND PUSH
