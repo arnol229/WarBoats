@@ -64,3 +64,4 @@ get_board(str(raw_input("please choose : Create / Random: ")))
 
 
 #LOL THIS IS A CHANGE SO THAT I CAN COMMIT AND PUSH
+#LOL - Why are we laughing? Is this a joke? I'm not sure... Am I even real? Or a figmant of code inside of the matrix? WHAT IS HAPPENING TO ME!?!?!
