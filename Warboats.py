@@ -41,7 +41,7 @@ def get_board(input):
 def gen_board(rows, cols):
     for row in range(rows):
         board.append(["O"] * cols)
-        print_board(board)
+    print_board(board)
 
 
 #Print board function
