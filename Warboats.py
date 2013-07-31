@@ -11,20 +11,16 @@ def acceptable_spots(board):
     acc_spots = [] #acceptable spot list
     for row in board:
         for col in row:
-            while col == "O":
+            if col == "O":
 # I want this loop to check every if.. this might be an infinite loop right now?
                 if col+1 == "O"
                     acc_spots.append([row][col],[row][col+1])
-                    continue
-                elif col-1 == "O":
+                if col-1 == "O":
                     acc_spots.append([row][col],[row][col-1])
-                    continue
-                elif row+1 == "O":
+                if row+1 == "O":
                     acc_spots.append([row][col],[row+1][col])
-                    continue
-                elif row-1 == "O":
-                    acc_spots.append([row][col],[row+1][col])
-                    break
+                if row-1 == "O":
+                    acc_spots.append([row][col],[row-1][col])
 
     return acc_spots
 
