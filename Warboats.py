@@ -46,13 +46,13 @@ def roberts_spot_algorithm(row_size, col_size):
             if x - 1 > 0:
                 # checking if the piece can go vertically up 1 spot
                 spots.append((anchor_point, (x-1, y,),))
-            if x + 1 <= row_size:
+            if x + 1 < row_size:
                 # checking to see if piece can go vertically down 1 spot
                 spots.append((anchor_point, (x+1, y,),))
             if y - 1 > 0:
                 # checking to see if piece can go horizontally left 1 spot
                 spots.append((anchor_point, (x, y-1,),))
-            if y + 1 <= col_size:
+            if y + 1 < col_size:
                 # checking to see if piece can go horizontally right 1 spot
                 spots.append((anchor_point, (x, y + 1,),))
 
