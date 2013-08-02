@@ -12,7 +12,6 @@ open_spots = []
 # Step 2 - go row by row and append all spots
 def acceptable_spots(row_size, col_size):
     print 'Board Size: {0}x{1}'.format(row_size, col_size)
-    spots = []
     for row in range(row_size):
         x = row
         for col in range(col_size):
@@ -23,17 +22,17 @@ def acceptable_spots(row_size, col_size):
             anchor_point = (x,y,)
             if x - 1 >= 0:
                 # checking if the piece can go vertically up 1 spot
-                spots.append((anchor_point, (x-1, y,),))
+                open_spots.append((anchor_point, (x-1, y,),))
             if x + 1 <= row_size:
                 # checking to see if piece can go vertically down 1 spot
-                spots.append((anchor_point, (x+1, y,),))
+                open_spots.append((anchor_point, (x+1, y,),))
             if y - 1 >= 0:
                 # checking to see if piece can go horizontally left 1 spot
-                spots.append((anchor_point, (x, y-1,),))
+                open_spots.append((anchor_point, (x, y-1,),))
             if y + 1 <= col_size:
                 # checking to see if piece can go horizontally right 1 spot
-                spots.append((anchor_point, (x, y + 1,),))
-    return spots
+                open_spots.append((anchor_point, (x, y + 1,),))
+    return open_spots
 
 #pprint = pretty print
 #import pprint
@@ -85,9 +84,10 @@ def print_board(board):
 # and then redefine acc_spots, accounting for the taken spot
 # Do i need another function to handle that? or can that be taken care of here
 def place_ship(ship_count,open_spots):
+    from random import choice
     ship_pos = []
     while ship_count != 0:
-        ship_pos.append(open_spots[randint(len(open_spots))])
+        ship_pos.append(*open_spots[choice(open_spots)])
         ship_count = ship_count -1
     print ship_pos
 
