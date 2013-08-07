@@ -4,7 +4,9 @@
 # rounds of fire? multiple spot submissions -> evaluate
 
 import random
+import pprint
 
+pp = pprint.PrettyPrinter(depth=6)
 board = []
 open_spots = []
 # Robert's acceptable spots Algo
@@ -35,12 +37,6 @@ def acceptable_spots(row_size, col_size):
     for spots in open_spots:
         print "spot:" , spots
     return open_spots
-
-#pprint = pretty print
-#import pprint
-#roberts_test = roberts_spot_algorithm(3,3)
-#pp = pprint.PrettyPrinter(depth=6)
-#pp.pprint(roberts_test)
 
 # Find out if user wants to create or get random board
 def get_board(input):
@@ -81,27 +77,39 @@ def print_board(board):
             col_list.append(col)
         print " ".join(col_list)
 
-def remove_ships(open_spots, ship):
-    pass
+def remove_spots(open_spots, ship):
+    xy1, xy2 = ship
+    indexes = []
+    counter = 0
+    for coord in open_spots:
+        if xy1 == coord[0] or xy1 == coord[1] or xy2 == coord[0] or xy2 == coord[1]:
+            indexes.append(open_spots.index(coord))
+            #popped = open_spots.pop(open_spots.index(coord))
+            #print "coordinate {0} popped!".format(popped)
+    for i in indexes:
+        gone = open_spots.pop(i - counter)
+        print "we got rid of: ", gone
+        counter += 1
 
-# place ship will call acceptable_spots to find valid places to put ships
-# after choosing a certain spot, it must then remove the spot from acc_spots
-# and then redefine acc_spots, accounting for the taken spot
-# Do i need another function to handle that? or can that be taken care of here
+ship_pos = []
 def place_ship(ship_count,open_spots):
-    ship_pos = []
+    print "open spots: "
+    pp.pprint(open_spots)
     while ship_count != 0:
         ship = random.choice(open_spots)
-        remove_ships(open_spots, ship)
-        #open_spots.remove(ship)# need to remove duplicate coordinates
-        ship_pos.append(ship)#   that are paired with other open spots
+        remove_spots(open_spots, ship)
+        ship_pos.append(ship)
+        print "ship #{}: {}".format(ship_count, ship)
         ship_count -= 1
-    for ships in ship_pos:
-        print "the ship position: " , ships
-    for spots in open_spots:
-        print "open_spot: " , spots
+        print "open spots: "
+        pp.pprint(open_spots)
 
 
 get_board(str(raw_input("please choose : Create / Random: ")))
 ship_count = (int(raw_input("How many ships?")))
 place_ship(ship_count, open_spots)
+
+print "ship position:"
+pp.pprint(ship_pos)
+print "remaining open_spots:"
+pp.pprint(open_spots)
