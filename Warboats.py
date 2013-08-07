@@ -3,7 +3,7 @@
 # mark X for spots missed on the board
 # rounds of fire? multiple spot submissions -> evaluate
 
-from random import randint
+import random
 
 board = []
 open_spots = []
@@ -32,6 +32,8 @@ def acceptable_spots(row_size, col_size):
             if y + 1 <= col_size:
                 # checking to see if piece can go horizontally right 1 spot
                 open_spots.append((anchor_point, (x, y + 1,),))
+    for spots in open_spots:
+        print "spot:" , spots
     return open_spots
 
 #pprint = pretty print
@@ -54,8 +56,8 @@ def get_board(input):
         print row_size, col_size
     elif input == "random":
         print "generating random board..."
-        row_size = randint(3,10)
-        col_size = randint(3,10)
+        row_size = random.randint(3,10)
+        col_size = random.randint(3,10)
         gen_board(row_size, col_size)
         open_spots = acceptable_spots(row_size, col_size)
         print row_size, col_size
@@ -79,17 +81,26 @@ def print_board(board):
             col_list.append(col)
         print " ".join(col_list)
 
+def remove_ships(open_spots, ship):
+    
+
 # place ship will call acceptable_spots to find valid places to put ships
 # after choosing a certain spot, it must then remove the spot from acc_spots
 # and then redefine acc_spots, accounting for the taken spot
 # Do i need another function to handle that? or can that be taken care of here
 def place_ship(ship_count,open_spots):
-    from random import choice
     ship_pos = []
     while ship_count != 0:
-        ship_pos.append(*open_spots[choice(open_spots)])
-        ship_count = ship_count -1
-    print ship_pos
+        ship = random.choice(open_spots)
+        remove_ships(open_spots, ship)
+        #open_spots.remove(ship)# need to remove duplicate coordinates 
+        ship_pos.append(ship)#   that are paired with other open spots
+        ship_count -= 1
+    for ships in ship_pos:
+        print "the ship position: " , ships
+    for spots in open_spots:
+        print "open_spot: " , spots
+
 
 get_board(str(raw_input("please choose : Create / Random: ")))
 ship_count = (int(raw_input("How many ships?")))
