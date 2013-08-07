@@ -82,7 +82,7 @@ def print_board(board):
         print " ".join(col_list)
 
 def remove_ships(open_spots, ship):
-    
+    pass
 
 # place ship will call acceptable_spots to find valid places to put ships
 # after choosing a certain spot, it must then remove the spot from acc_spots
@@ -93,7 +93,7 @@ def place_ship(ship_count,open_spots):
     while ship_count != 0:
         ship = random.choice(open_spots)
         remove_ships(open_spots, ship)
-        #open_spots.remove(ship)# need to remove duplicate coordinates 
+        #open_spots.remove(ship)# need to remove duplicate coordinates
         ship_pos.append(ship)#   that are paired with other open spots
         ship_count -= 1
     for ships in ship_pos:
