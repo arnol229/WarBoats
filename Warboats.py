@@ -2,7 +2,7 @@
 # different kinds of ships instead of 1,2. D = destroyer = 3 piece ship
 # mark X for spots missed on the board
 # rounds of fire? multiple spot submissions -> evaluate
-
+import time
 import random
 import pprint
 
@@ -36,7 +36,6 @@ def acceptable_spots(row_size, col_size):
                 open_spots.append((anchor_point, (x, y + 1,),))
     for spots in open_spots:
         print "spot:" , spots
-    return open_spots
 
 # Find out if user wants to create or get random board
 def get_board(input):
@@ -48,16 +47,18 @@ def get_board(input):
         print "Generating your board with {} rows and {} collumns...".format(row_size, col_size)
         gen_board(row_size, col_size)
         open_spots = acceptable_spots(row_size, col_size)
-        return open_spots
-        print row_size, col_size
+        ship_count = (int(raw_input("How many ships?")))
+        place_ship(ship_count, open_spots)
+        #print row_size, col_size
     elif input == "random":
         print "generating random board..."
         row_size = random.randint(3,10)
         col_size = random.randint(3,10)
         gen_board(row_size, col_size)
         open_spots = acceptable_spots(row_size, col_size)
-        print row_size, col_size
-        return open_spots
+        ship_count = (int(raw_input("How many ships?")))
+        place_ship(ship_count, open_spots)
+        #print row_size, col_size
     else:
         get_board(str(raw_input("error, please retry : Create / Random: ")))
 
@@ -88,7 +89,7 @@ def remove_spots(open_spots, ship):
             #print "coordinate {0} popped!".format(popped)
     for i in indexes:
         gone = open_spots.pop(i - counter)
-        print "we got rid of: ", gone
+        #print "we got rid of: ", gone
         counter += 1
 
 ship_pos = []
@@ -99,17 +100,78 @@ def place_ship(ship_count,open_spots):
         ship = random.choice(open_spots)
         remove_spots(open_spots, ship)
         ship_pos.append(ship)
+        for xy in ship:
+            board[xy[0]][xy[1]] = "{}".format(ship_count)
         print "ship #{}: {}".format(ship_count, ship)
         ship_count -= 1
-        print "open spots: "
-        pp.pprint(open_spots)
+        #print "open spots: "
+        #pp.pprint(open_spots)
 
+#def fire(input):
+print """
 
-get_board(str(raw_input("please choose : Create / Random: ")))
-ship_count = (int(raw_input("How many ships?")))
-place_ship(ship_count, open_spots)
+WAR BOATS!
 
-print "ship position:"
-pp.pprint(ship_pos)
-print "remaining open_spots:"
-pp.pprint(open_spots)
+"""
+time.sleep(1)
+print """The Deadliest game known to man!
+
+"""
+time.sleep(2)
+def main_menu():
+    print """Main Menu
+
+    1. Play vs Comp
+    2. 2 Player
+    3. Settings
+    4. Credits
+    5. Quit"""
+    choice = int(raw_input("What would you like to do?: "))
+    if choice == 1:
+        get_board(raw_input("please choose : Create / Random: ").lower())
+    if choice == 2:
+        print """
+
+        this aint done yet, son.
+
+        """
+        time.sleep(1)
+        main_menu()
+    if choice == 3:
+        print """
+
+        this aint done yet, son.
+
+        """
+        time.sleep(1)
+        main_menu()
+    if choice == 4:
+        print """
+
+        Developed by Bo Arnold
+        Email: arnol229@gmail.com
+        
+        """
+        time.sleep(1)
+        main_menu()
+    if choice == 5:
+        print "Goodbye!"
+    #else:
+     #   print """
+
+      #  ERROR: please enter a valid choice.
+        
+       # """
+        #time.sleep(1)
+        #main_menu()
+
+main_menu()
+#get_board(str(raw_input("please choose : Create / Random: ")))
+#ship_count = (int(raw_input("How many ships?")))
+#place_ship(ship_count, open_spots)
+
+#print "ship position(s): "
+#pp.pprint(ship_pos)
+#print "remaining open_spots:"
+#pp.pprint(open_spots)
+print_board(board)
