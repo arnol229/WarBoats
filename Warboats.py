@@ -9,6 +9,7 @@ import pprint
 pp = pprint.PrettyPrinter(depth=6)
 board = []
 open_spots = []
+ship_count = 0
 # Robert's acceptable spots Algo
 # Step 1 - get board size
 # Step 2 - go row by row and append all spots
@@ -34,8 +35,8 @@ def acceptable_spots(row_size, col_size):
             if y + 1 <= col_size:
                 # checking to see if piece can go horizontally right 1 spot
                 open_spots.append((anchor_point, (x, y + 1,),))
-    for spots in open_spots:
-        print "spot:" , spots
+    #for spots in open_spots:
+        #print "spot:" , spots
 
 # Find out if user wants to create or get random board
 def get_board(input):
@@ -85,7 +86,7 @@ def remove_spots(open_spots, ship):
     for coord in open_spots:
         if xy1 == coord[0] or xy1 == coord[1] or xy2 == coord[0] or xy2 == coord[1]:
             indexes.append(open_spots.index(coord))
-            #popped = open_spots.pop(open_spots.index(coord))
+            popped = open_spots.pop(open_spots.index(coord))
             #print "coordinate {0} popped!".format(popped)
     for i in indexes:
         gone = open_spots.pop(i - counter)
