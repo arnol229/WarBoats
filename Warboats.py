@@ -10,6 +10,7 @@ pp = pprint.PrettyPrinter(depth=6)
 board = []
 open_spots = []
 ship_count = 0
+ship_pos = []
 # Robert's acceptable spots Algo
 # Step 1 - get board size
 # Step 2 - go row by row and append all spots
@@ -48,8 +49,8 @@ def get_board(input):
         print "Generating your board with {} rows and {} collumns...".format(row_size, col_size)
         gen_board(row_size, col_size)
         open_spots = acceptable_spots(row_size, col_size)
-        ship_count = (int(raw_input("How many ships?")))
-        place_ship(ship_count, open_spots)
+        #ship_count = (int(raw_input("How many ships?")))
+        return open_spots
         #print row_size, col_size
     elif input == "random":
         print "generating random board..."
@@ -57,8 +58,8 @@ def get_board(input):
         col_size = random.randint(3,10)
         gen_board(row_size, col_size)
         open_spots = acceptable_spots(row_size, col_size)
-        ship_count = (int(raw_input("How many ships?")))
-        place_ship(ship_count, open_spots)
+        #ship_count = (int(raw_input("How many ships?")))
+        return open_spots
         #print row_size, col_size
     else:
         get_board(str(raw_input("error, please retry : Create / Random: ")))
@@ -93,17 +94,17 @@ def remove_spots(open_spots, ship):
         #print "we got rid of: ", gone
         counter += 1
 
-ship_pos = []
 def place_ship(ship_count,open_spots):
-    print "open spots: "
-    pp.pprint(open_spots)
+    #print "open spots: "
+    #pp.pprint(open_spots)
     while ship_count != 0:
         ship = random.choice(open_spots)
         remove_spots(open_spots, ship)
         ship_pos.append(ship)
+        print "ship #{}: {}".format(ship_count, ship)
         for xy in ship:
             board[xy[0]][xy[1]] = "{}".format(ship_count)
-        print "ship #{}: {}".format(ship_count, ship)
+            print_board(board)
         ship_count -= 1
         #print "open spots: "
         #pp.pprint(open_spots)
@@ -130,7 +131,7 @@ def main_menu():
     choice = int(raw_input("What would you like to do?: "))
     if choice == 1:
         get_board(raw_input("please choose : Create / Random: ").lower())
-    if choice == 2:
+    elif choice == 2:
         print """
 
         this aint done yet, son.
@@ -138,7 +139,7 @@ def main_menu():
         """
         time.sleep(1)
         main_menu()
-    if choice == 3:
+    elif choice == 3:
         print """
 
         this aint done yet, son.
@@ -146,7 +147,7 @@ def main_menu():
         """
         time.sleep(1)
         main_menu()
-    if choice == 4:
+    elif choice == 4:
         print """
 
         Developed by Bo Arnold
@@ -155,24 +156,27 @@ def main_menu():
         """
         time.sleep(1)
         main_menu()
-    if choice == 5:
+    elif choice == 5:
         print "Goodbye!"
-    #else:
-     #   print """
+    else:
+        print """
 
-      #  ERROR: please enter a valid choice.
+        ERROR: please enter a valid choice.
         
-       # """
-        #time.sleep(1)
-        #main_menu()
+        """
+        time.sleep(1)
+        main_menu()
+
+#### START ####
 
 main_menu()
 #get_board(str(raw_input("please choose : Create / Random: ")))
-#ship_count = (int(raw_input("How many ships?")))
-#place_ship(ship_count, open_spots)
+ship_count = (int(raw_input("How many ships?")))
+place_ship(ship_count, open_spots)
 
-#print "ship position(s): "
-#pp.pprint(ship_pos)
+print "ship position(s): "
+pp.pprint(ship_pos)
 #print "remaining open_spots:"
 #pp.pprint(open_spots)
 print_board(board)
+main_menu()
