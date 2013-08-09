@@ -105,21 +105,13 @@ def place_ship(ship_count,open_spots):
         for xy in ship:
             board[xy[0]][xy[1]] = "{}".format(ship_count)
             print_board(board)
+            print " "
         ship_count -= 1
         #print "open spots: "
         #pp.pprint(open_spots)
 
-#def fire(input):
-print """
+#def fire(coords):
 
-WAR BOATS!
-
-"""
-time.sleep(1)
-print """The Deadliest game known to man!
-
-"""
-time.sleep(.5)
 def main_menu():
     print """Main Menu
 
@@ -168,7 +160,16 @@ def main_menu():
         main_menu()
 
 #### START ####
+print """
 
+WAR BOATS!
+
+"""
+time.sleep(1)
+print """The Deadliest game known to man!
+
+"""
+time.sleep(.5)
 main_menu()
 #get_board(str(raw_input("please choose : Create / Random: ")))
 ship_count = (int(raw_input("How many ships?")))
