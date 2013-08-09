@@ -27,13 +27,13 @@ def acceptable_spots(row_size, col_size):
             if x - 1 >= 0:
                 # checking if the piece can go vertically up 1 spot
                 open_spots.append((anchor_point, (x-1, y,),))
-            if x + 1 <= row_size:
+            if x + 1 <= row_size-1:
                 # checking to see if piece can go vertically down 1 spot
                 open_spots.append((anchor_point, (x+1, y,),))
             if y - 1 >= 0:
                 # checking to see if piece can go horizontally left 1 spot
                 open_spots.append((anchor_point, (x, y-1,),))
-            if y + 1 <= col_size:
+            if y + 1 <= col_size-1:
                 # checking to see if piece can go horizontally right 1 spot
                 open_spots.append((anchor_point, (x, y + 1,),))
     #for spots in open_spots:
@@ -87,11 +87,11 @@ def remove_spots(open_spots, ship):
     for coord in open_spots:
         if xy1 == coord[0] or xy1 == coord[1] or xy2 == coord[0] or xy2 == coord[1]:
             indexes.append(open_spots.index(coord))
-            popped = open_spots.pop(open_spots.index(coord))
+            #popped = open_spots.pop(open_spots.index(coord))
             #print "coordinate {0} popped!".format(popped)
     for i in indexes:
         gone = open_spots.pop(i - counter)
-        #print "we got rid of: ", gone
+        print "we got rid of: ", gone
         counter += 1
 
 def place_ship(ship_count,open_spots):
@@ -119,7 +119,7 @@ time.sleep(1)
 print """The Deadliest game known to man!
 
 """
-time.sleep(2)
+time.sleep(.5)
 def main_menu():
     print """Main Menu
 
