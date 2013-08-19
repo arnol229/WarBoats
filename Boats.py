@@ -1,7 +1,7 @@
 class Boat(object):
     self.Alive = True
 
-	__init__(self, PositionList): #bring in type later? battleship,cruiser
+	__init__(self, Type, PositionList): #bring in type later? battleship,cruiser
 		for i in len(PositionList): # Create a ShipPoint for each point of length
 			self.Point[i] = ShipPoints(PositionList[i[0]], PositionList[i[1]])
 			# ^^ will that work? creating point1, point2, point3 etc..?
