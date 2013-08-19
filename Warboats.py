@@ -5,6 +5,8 @@
 import time
 import random
 import pprint
+import WarboatsClass.py
+
 
 pp = pprint.PrettyPrinter(depth=6)
 board = []
@@ -111,7 +113,7 @@ def place_ship(ship_count,open_spots):
         #pp.pprint(open_spots)
 
 #def fire(coords):
-
+MyPlayer = Player()
 def main_menu():
     print """Main Menu
 
@@ -174,7 +176,7 @@ main_menu()
 #get_board(str(raw_input("please choose : Create / Random: ")))
 ship_count = (int(raw_input("How many ships?")))
 place_ship(ship_count, open_spots)
-
+MyPlayer = MyPlayer(ship_pos)
 print "ship position(s): "
 pp.pprint(ship_pos)
 #print "remaining open_spots:"

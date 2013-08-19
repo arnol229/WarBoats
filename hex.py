@@ -1,0 +1,6 @@
+print 0xf
+x = 0x0101
+if x & 0x0001 == 0x0000:
+	print "even"
+else:
+	print "odd"
