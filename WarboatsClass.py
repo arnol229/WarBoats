@@ -1,64 +1,99 @@
-class MainMenu():
+# Prompt Login - if cannot find playerid, create? y/n. skip option to null playerid. store 
+# Main Menu:
+# Switch login - run login class - reassign self.PlayerID according to name
+# Play - sub menu: 1 or two player - sub menu: specials or no - board size & # of boats? = RUN GAME CLASS 
+# Credits - display credits
+# Exit
+# 
+# for a game, each player gets assigned 2 boards (one with their ships, one with enemy ships)
+# enemy ship board is for firing at, your board to see where enemy has fired
+# 
+# 
+
+
+class MainMenu(): # Does this need to be a class?
 	Login
 	
 
-class login(object):
+class login(object): #Does this need to be a class?
+	# create dictionary with Login name:password. can we attach a playerid? ex. '0001'
+	# do we need to?
 	__init__(self, PlayerID, Password)
 		self.PlayerID = PlayerID
 		self.Password = Password
-		self.AllPlayers = []
+		self.AllPlayers = [] #dictionary to look up id:password. 
+		# if true, assign this player id and store games to his history
 
 
-class ShipPoints(object):
+class ShipPoints(object): #Each ship will be assigned 1 ShipPoint per point of its length
 	__init__(self, x, y):
-		self.x = x
-		self.y = y
-		self.alive = True
+		self.x = x # X coordinate
+		self.y = y # Y coordinate
+		self.alive = True # Is it alive or dead?
 
-class Game(object):
-	__init__(self, Players, Special)
+class Game(object): # Create a game. save these objects to pull up a match history?
+	__init__(self, Players, Special, PlayerID, Name)
 		self.Players = Players
 		self.Special = Special
+		self.PlayerID = PlayerID
+		self.Name = Name
+		self.Winner = False
 		if self.Players == 2 and self.Special == False:
-			TwoPlayer(False)
+			TwoPlayer(False, self.PlayerID)
 		elif self.Players == False and self.Special == True:
-			TwoPlayer(True)
+			TwoPlayer(True, self.PlayerID)
 		elif self.Players == 1 and self.Special == True:
-			SinglePlayer(True)
+			SinglePlayer(True, self.PlayerID)
 		elif self.Players == 1 and self.Special == False:
-			SinglePlayer(False)
+			SinglePlayer(False, self.PlayerID)
 
-	def TwoPlayer(self, Special):
+	def TwoPlayer(self, Special): #Run a two player game
 		self.Special = Special
-		if Self.Special == True
+		if Self.Special == True:
+			self.Player1 = Player(self.PlayerID, self.Name, self.Type)
+			self.Player2 = Player() #Do I need to intialize self.player1&2 in Game init?
+		elif Self.Special == False:
+			self.Player1 = Player()
+			self.Player2 = Player()
 
-	def SinglePlayer(self, Special):
+	def SinglePlayer(self, Special): #run a 1 player game
 		self.Special = Special
-
+		if self.special == True:
+			self.Player1 = Player()
+			self.ComputerAI = Player() #ComputerAI
+		elif self.special == False:
+			self.Player1 = Player()
+			self.ComputerAI = Player()
 
 class Boat(object):
-	__init__(self, positionList):
-		for i in len(positionList):
-			self.point[i] = ShipPoints(positionList[i[0]], positionList[i[1]])
+	__init__(self, PositionList): #bring in type later? battleship,cruiser
+		self.Alive = True #Ship starts off alive
+		for i in len(PositionList): # Create a ShipPoint for each point of length
+			self.Point[i] = ShipPoints(PositionList[i[0]], PositionList[i[1]])
+			# ^^ will that work? creating point1, point2, point3 etc..?
+		def AliveOrDead():
+			# check to see if this boat's ship points are all dead
 
-class Player(object):
-	__init__(self, PlayerID, Name, Type):
+class Player(object): # create the player
+	__init__(self, PlayerID, Name, Type): # should i bring in the dictionary entry? probably not?
 		self.PlayerID = PlayerID
 		self.Name = Name
 		self.Type = Type
+		# AddBoard("enemyboard")
+		# AddBoard("MyBoard")
 
-	def AddBoard(self, Type):
+	def AddBoard(self, Type): # generate a enemyboard and myboard
 		self.Type = Type
 		if self.Type == "MyBoard":
 			self.MyBoard = Board("MyBoard" , self.PlayerID)
 
-class Board(object):
+class Board(object): # Creating a board
 	__init__(self, Type, PlayerID)
 		self.Type = Type
 		self.PlayerID = PlayerID
 		self.board = []
 		self.BoatCount = 0
-		if self.Type = "MyBoard"
+		if self.Type = "MyBoard" # Below here is a mess. trying to copy paste functions to make methods in this class
 			AddBoat()
 		def AddBoat(self, Boat):
 			self.Boats.append(Boat())
