@@ -5,7 +5,7 @@ class Board(object): # Creating a board
 	self.PlayerID = None
 	self.Board = None
 	self.BoatCount = None
-	self.Boats = None
+	self.Boats = []
 	__init__(self, Rows, Cols, Type)
 		self.Rows = Rows
         self.Cols = Cols
@@ -16,6 +16,12 @@ class Board(object): # Creating a board
 	def AddBoat(self, Boat):
 		self.Boats.append(Boat())
 		self.BoatCount += 1
+
+    def GiveBoard(self, Board):
+        self.BoardReturn = []
+        self.Board = Board
+        for row in self.Board:
+
 
 	def get_board(self, input):
 		input.lower()
@@ -41,28 +47,65 @@ class Board(object): # Creating a board
 		else:
     		get_board(str(raw_input("error, please retry : Create / Random: ")))
 
-	def acceptable_spots(self, Board, Ship):
-		print 'Board Size: {0}x{1}'.format(Board)
-		for row in range(Board):
-    		x = row
-    		for col in range(row):
-        		y = col
-        # so we have our starting point of
-        # (x,y) now we need to find the next point for a 2x1 piece
-        # vertical and horizontal
-        		anchor_point = (x,y,)
-        		if x - self.Ship.length >= 0:
-            # checking if the piece can go vertically up 1 spot
-            		open_spots.append((anchor_point, (x-1, y,),))
-        		if x + 1 <= row_size-1:
-            # checking to see if piece can go vertically down 1 spot
-            		open_spots.append((anchor_point, (x+1, y,),))
-        		if y - 1 >= 0:
-            # checking to see if piece can go horizontally left 1 spot
-            		open_spots.append((anchor_point, (x, y-1,),))
-        		if y + 1 <= col_size-1:
-            # checking to see if piece can go horizontally right 1 spot
-            		open_spots.append((anchor_point, (x, y + 1,),))
+	def OpenSpots(self, Board, Boat):
+        self.Boat = Boat
+        self.OpenSpots = []
+        for row in range(Board):
+            x = row
+            for col in range(row):
+                y = col
+
+
+                piece = 0 # counter to place all ship pieces
+                coords = [(x,y,),] 
+                while piece != self.Boat.BoatSpaces #while counter has not hit total ship pieces
+                    
+                    if x - piece >= 0:
+                        coords.append((x-piece, y,))
+                        piece +=1
+                    if piece == self.Boat.BoatSpaces: # if all pieces fit
+                        self.OpenSpots.append(coords)
+                        coords = [(x,y,),]
+                    else: # if they cant be placed, reset coords to x,y for the rest of the while loops
+                        coords = [(x,y,),]
+                        break
+                piece = 0
+
+
+                while piece != self.Boat.BoatSpaces
+                    coords = [(x,y,),]
+                    anchor_point = (x,y,)
+                    if x + piece >= 0:
+                        coords.append((anchor_point, (x-piece, y,),))
+                        piece +=1
+                    else:
+                        break
+                piece = 0
+
+
+                while piece != self.Boat.BoatSpaces
+                    coords = [(x,y,),]
+                    anchor_point = (x,y,)
+                    if y - space >= 0:
+                        coords.append((anchor_point, (x-piece, y,),))
+                        piece +=1
+                    else:
+                        break
+                piece = 0
+
+
+                while piece != self.Boat.BoatSpaces
+                    coords = [(x,y,),]
+                    anchor_point = (x,y,)
+                    if y + space >= 0:
+                        coords.append((anchor_point, (x, y+piece,),))
+                        piece +=1
+                    else:
+                        break
+                piece = 0
+
+
+        return self.OpenSpots
 
     def gen_board(self, rows, cols):
     	for row in range(rows):
@@ -75,7 +118,7 @@ class Board(object): # Creating a board
             	col_list.append(col)
         print " ".join(col_list)
 
-    def place_ship(self, ship_count,open_spots):
+    def place_ship(self, ship, board):
     	while ship_count != 0:
         	ship = random.choice(open_spots)
         	remove_spots(open_spots, ship)

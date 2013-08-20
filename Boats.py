@@ -1,15 +1,24 @@
 class Boat(object):
     self.Alive = True
     self.points = []
+    self.BoatSpaces = None
 
-	__init__(self, Type, PositionList): #bring in type later? battleship,cruiser
-		#for i in len(PositionList): # Create a ShipPoint for each point of length
-		#	self.points[i] = ShipPoints(PositionList[i[0]], PositionList[i[1]])
-		#	# ^^ will that work? creating point1, point2, point3 etc..?
+	__init__(self, Type): #bring in type later? battleship,cruiser
+		self.Type = Type
+		if self.Type = "Destroyer":
+			self.BoatSpaces = 2
+		if self.Type = "Cruiser":
+			self.BoatSpaces = 3
+		if self.Type = "WarBoat":
+			self.BoatSpaces = 4
+
+		Board.OpenSpots()
+
+	def ActivateBoat(self, PositionList):
 		for pl in PositionList:
 			self.points.append(ShipPoints(pl[0], pl[1]))
 
-	def AliveOrDead(self):
+	def IsDead(self):
 		# check to see if this boat's ship points are all dead
 
 		for point in self.points:

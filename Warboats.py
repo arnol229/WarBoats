@@ -35,8 +35,8 @@ Main Menu:
 		if BoardSize != 1 and BoarSize != 2:
 			print "you dun fucked up now, boy"
 		Players = input("How many players? (1 or 2)")
-			if Players == 1:
-				Power = input("""Super Powers!
+		if Players == 1:
+			Power = input("""Super Powers!
 			0. No Powers
 			1. Radar
 			2. Super Gun
@@ -47,24 +47,23 @@ Main Menu:
 				Ships = input("How many ships?: ")
 
 				Game((Player(Power, Board(rows, cols), Board(rows, cols), Ships, False)), (Player(randint(0,3), Board(rows, cols), Board(rows, cols), Ships, True)))
-			if Players == 2:
-				AI = False
-				Power1 = input("""Super Powers!(Player1)
+		if Players == 2:
+			Power1 = input("""Super Powers!(Player1)
 			0. No Powers
 			1. Radar
 			2. Super Gun
 			3. Deflector Shield
 	
 			""")
-				Power2 = input("""Super Powers!(Player2)
+			Power2 = input("""Super Powers!(Player2)
 			0. No Powers
 			1. Radar
 			2. Super Gun
 			3. Deflector Shield
 	
 			""")
-				Ships = input("How many Ships?: ")
-				Game((Player(Power1, Board(rows, cols), Board(rows, cols)), Ships, False), (Player(Power2, Board(rows, cols), Board(rows, cols), Ships, False)))
+			Ships = input("How many Ships?(please consider the map size): ")
+			Game((Player(Power1, Board(rows, cols), Board(rows, cols)), Ships, False), (Player(Power2, Board(rows, cols), Board(rows, cols), Ships, False)))
 				# Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
 				# Player2 passing the same elements
 				#
@@ -83,4 +82,4 @@ Main Menu:
 		run = False
 
 	else:
-		print "Error!""
+		print "Error!"
