@@ -7,7 +7,7 @@ class Boat(object):
 		#	self.points[i] = ShipPoints(PositionList[i[0]], PositionList[i[1]])
 		#	# ^^ will that work? creating point1, point2, point3 etc..?
 		for pl in PositionList:
-			self.points.append(pl)
+			self.points.append(ShipPoints(pl[0], pl[1]))
 
 	def AliveOrDead(self):
 		# check to see if this boat's ship points are all dead
