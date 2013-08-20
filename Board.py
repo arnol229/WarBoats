@@ -31,7 +31,7 @@ class Board(object): # Creating a board
     		col_size = int(size[2])
     		print "Generating your board with {} rows and {} collumns...".format(row_size, col_size)
     		gen_board(row_size, col_size)
-    		self.OpenSpots = acceptable_spots(row_size, col_size)
+    		self.open_spots = acceptable_spots(row_size, col_size)
     #ship_count = (int(raw_input("How many ships?")))
     		return open_spots
     #print row_size, col_size
@@ -40,31 +40,31 @@ class Board(object): # Creating a board
     		row_size = random.randint(3,10)
     		col_size = random.randint(3,10)
     		gen_board(row_size, col_size)
-    		Self.OpenSpots = acceptable_spots(row_size, col_size)
+    		self.open_spots = acceptable_spots(row_size, col_size)
     #ship_count = (int(raw_input("How many ships?")))
-    		return open_spots
+    		return self.open_spots
     #print row_size, col_size
 		else:
     		get_board(str(raw_input("error, please retry : Create / Random: ")))
 
-	def OpenSpots(self, Board, Boat):
-        self.Boat = Boat
-        self.OpenSpots = []
-        for row in range(Board):
+	def open_spots(self, Boat):
+        spots = []
+
+        for row in range(self.Board):
             x = row
             for col in range(row):
                 y = col
 
 
                 piece = 0 # counter to place all ship pieces
-                coords = [(x,y,),] 
+                coords = [(x,y,),]
                 while piece != self.Boat.BoatSpaces #while counter has not hit total ship pieces
-                    
+
                     if x - piece >= 0:
                         coords.append((x-piece, y,))
                         piece +=1
                     if piece == self.Boat.BoatSpaces: # if all pieces fit
-                        self.OpenSpots.append(coords)
+                        spots.append(coords)
                         coords = [(x,y,),]
                     else: # if they cant be placed, reset coords to x,y for the rest of the while loops
                         coords = [(x,y,),]
