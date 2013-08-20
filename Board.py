@@ -117,15 +117,3 @@ class Board(object): # Creating a board
         	for col in row:
             	col_list.append(col)
         print " ".join(col_list)
-
-    def place_ship(self, ship, board):
-    	while ship_count != 0:
-        	ship = random.choice(open_spots)
-        	remove_spots(open_spots, ship)
-        	ship_pos.append(ship)
-        	print "ship #{}: {}".format(ship_count, ship)
-        	for xy in ship:
-            	board[xy[0]][xy[1]] = "{}".format(ship_count)
-            	print_board(board)
-            	print " "
-        	ship_count -= 1

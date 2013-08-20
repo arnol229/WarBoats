@@ -13,3 +13,15 @@ class Player(object): # create the player
 		self.Ships = Ships
 		#self.EnemyBoard = Board.(EnemyBoard)
 		self.MyBoard = Board.GenBoard(MyBoard)
+
+	def place_ship(self, ship, board):
+    	while ship_count != 0:
+        	ship = random.choice(open_spots)
+        	remove_spots(open_spots, ship)
+        	ship_pos.append(ship)
+        	print "ship #{}: {}".format(ship_count, ship)
+        	for xy in ship:
+            	board[xy[0]][xy[1]] = "{}".format(ship_count)
+            	print_board(board)
+            	print " "
+        	ship_count -= 1
