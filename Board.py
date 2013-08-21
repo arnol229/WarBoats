@@ -47,65 +47,73 @@ class Board(object): # Creating a board
 		else:
     		get_board(str(raw_input("error, please retry : Create / Random: ")))
 
-	def open_spots(self, Boat):
+	def open_spots(self, Boat, Board):
         spots = []
 
         for row in range(self.Board):
             x = row
             for col in range(row):
                 y = col
-
-
                 piece = 0 # counter to place all ship pieces
                 coords = [(x,y,),]
-                while piece != self.Boat.BoatSpaces #while counter has not hit total ship pieces
 
+                #Check to Up
+                while piece != self.Boat.BoatSpaces -1: #while counter has not hit total ship pieces
+                    piece += 1 #              we minus one because coords starts with the first ship piece
                     if x - piece >= 0:
                         coords.append((x-piece, y,))
-                        piece +=1
-                    if piece == self.Boat.BoatSpaces: # if all pieces fit
-                        spots.append(coords)
-                        coords = [(x,y,),]
+                        if piece == self.Boat.BoatSpaces -1: # if all pieces fit
+                            spots.append(coords)# take all the spots appended to coord and put them in spots
+                            coords = [(x,y,),]# then reset coords to x,y for the other while loops
+                            break
                     else: # if they cant be placed, reset coords to x,y for the rest of the while loops
                         coords = [(x,y,),]
                         break
-                piece = 0
+                piece = 0 # reset counter for next loop
 
-
+                #Check to the Down
                 while piece != self.Boat.BoatSpaces
-                    coords = [(x,y,),]
-                    anchor_point = (x,y,)
-                    if x + piece >= 0:
-                        coords.append((anchor_point, (x-piece, y,),))
-                        piece +=1
+                    piece += 1
+                    if x + piece <= len(row): # not 100% sure on len(row)
+                        coords.append((x+piece, y,),)
+                        if piece == self.Boat.BoatSpaces -1:
+                            spots.append(coords)
+                            coords = [(x,y,),]
+                            break
                     else:
+                        coords = [(x,y,),]
                         break
                 piece = 0
 
-
+                # Check left
                 while piece != self.Boat.BoatSpaces
-                    coords = [(x,y,),]
-                    anchor_point = (x,y,)
-                    if y - space >= 0:
-                        coords.append((anchor_point, (x-piece, y,),))
-                        piece +=1
+                    piece += 1
+                    if y - piece >= 0:
+                        coords.append((x, y-piece,),)
+                        if piece == self.Boat.BoatSpaces -1:
+                            spots.append(coords)
+                            coords = [(x,y,),]
+                            break
                     else:
+                        coords = [(x,y,),]
                         break
                 piece = 0
 
-
+                # Check right
                 while piece != self.Boat.BoatSpaces
-                    coords = [(x,y,),]
-                    anchor_point = (x,y,)
-                    if y + space >= 0:
-                        coords.append((anchor_point, (x, y+piece,),))
-                        piece +=1
+                    piece += 1
+                    if y + piece <= len(col): #not sure about this len(col)
+                        coords.append((x, y+piece,),)
+                        if piece == self.Boat.BoatSpaces -1:
+                            spots.append(coords)
+                            coords = [(x,y,),]
+                            break
                     else:
+                        coords = [(x,y,),]
                         break
                 piece = 0
 
-
-        return self.OpenSpots
+        return spots
 
     def gen_board(self, rows, cols):
     	for row in range(rows):
