@@ -14,10 +14,6 @@ class Boat(object):
 
 		Board.OpenSpots()
 
-	def ActivateBoat(self, PositionList):
-		for pl in PositionList:
-			self.points.append(ShipPoints(pl[0], pl[1]))
-
 	def IsDead(self):
 		# check to see if this boat's ship points are all dead
 

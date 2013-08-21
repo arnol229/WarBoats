@@ -32,7 +32,7 @@ Main Menu:
 		if BoardSize == 2:
 			rows = 8
 			cols = 8
-		if BoardSize != 1 and BoarSize != 2:
+		if BoardSize != 1 and BoardSize != 2:
 			print "you dun fucked up now, boy"
 		Players = input("How many players? (1 or 2)")
 		if Players == 1:

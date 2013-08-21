@@ -14,7 +14,9 @@ class Player(object): # create the player
 		#self.EnemyBoard = Board.(EnemyBoard)
 		self.MyBoard = Board.GenBoard(MyBoard)
 
-	def place_ship(self, ship, board):
+	def place_ship(self, ship, x, y):
+		shuffle(Board.self.lookoptions)
+		Board.self.lookoptions[0](boat, x,y)
     	while ship_count != 0:
         	ship = random.choice(open_spots)
         	remove_spots(open_spots, ship)
