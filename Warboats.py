@@ -8,8 +8,10 @@ import Player.py, Board.py, Game.py, Boats.py, Authentication.Py
 # 
 # if login == True: 
 run = True
+rows = None
+cols = None
 
-While Run == True:
+While run == True:
 	print """
 Main Menu:
 1.New Game

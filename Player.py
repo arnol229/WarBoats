@@ -14,16 +14,13 @@ class Player(object): # create the player
 		#self.EnemyBoard = Board.(EnemyBoard)
 		self.MyBoard = Board.GenBoard(MyBoard)
 
-	def place_ship(self, ship, x, y):
+	def place_ship(self, ship):
 		shuffle(Board.self.lookoptions)
-		Board.self.lookoptions[0](boat, x,y)
-    	while ship_count != 0:
-        	ship = random.choice(open_spots)
-        	remove_spots(open_spots, ship)
-        	ship_pos.append(ship)
-        	print "ship #{}: {}".format(ship_count, ship)
-        	for xy in ship:
-            	board[xy[0]][xy[1]] = "{}".format(ship_count)
-            	print_board(board)
-            	print " "
-        	ship_count -= 1
+		#######
+		Board.self.lookoptions[0](ship, randint(0,WarBoats.rows), randint(0,Warboats.cols)) #will this work?
+		##########
+		for f in Board.self.lookoptions:
+			f(self, ship,randint(0,WarBoats.rows), randint(0,Warboats.cols))
+			# or will this work.. need to write
+			# something to try next one if fails
+			# or stop the for loop if lookoptions succeeds
