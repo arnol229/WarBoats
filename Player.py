@@ -11,7 +11,7 @@ class Player(object): # create the player
         self.Ships = Ships
         self.EnemyBoard = EnemyBoard
         self.MyBoard = MyBoard
-        print self.MyBoard
+        #self.MyBoard.print_board(self.MyBoard)
 
     def place_ship(self, ship):
         shuffle(self.MyBoard.lookoptions)

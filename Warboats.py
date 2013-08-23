@@ -35,7 +35,7 @@ Main Menu:
         if BoardSize == 1:
             rows = 4
             cols = 4
-        if BoardSize == 2:
+        elif BoardSize == 2:
             rows = 8
             cols = 8
         if BoardSize != 1 and BoardSize != 2:

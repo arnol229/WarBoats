@@ -10,6 +10,8 @@ class Board(object): # Creating a board
         self.Cols = Cols
         self.Board = []
         self.Board = self.gen_board(self.Rows, self.Cols)
+        #print_board(self.Board)
+
     def AddBoat(self, Boat):
         self.Boats.append(Boat)
         self.BoatCount += 1
@@ -83,9 +85,9 @@ class Board(object): # Creating a board
         for row in range(rows):
             self.Board.append(["O"] * cols)
 
-    def print_board(self, board):
-        for row in board:
-            col_list = []
+    def print_board(self):
+        col_list = []
+        for row in range(self.Rows):
             for col in row:
                 col_list.append(col)
         print " ".join(col_list)
