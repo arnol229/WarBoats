@@ -2,14 +2,14 @@ import math
 
 class Board(object): # Creating a board
     PlayerID = None
-    Board = None
     BoatCount = None
     Boats = []
-    def __init__(self, Rows, Cols, Type):
-        self.Type = Type
-        self.Board = []
+    def __init__(self, Rows, Cols):
         self.BoatCount = 0
-        self.gen_board(Rows, Cols)
+        self.Rows = Rows
+        self.Cols = Cols
+        self.Board = []
+        self.Board = self.gen_board(self.Rows, self.Cols)
     def AddBoat(self, Boat):
         self.Boats.append(Boat)
         self.BoatCount += 1
@@ -78,13 +78,17 @@ class Board(object): # Creating a board
                     break
             else:
                 return False
+
     def gen_board(self, rows, cols):
         for row in range(rows):
             self.Board.append(["O"] * cols)
+
     def print_board(self, board):
         for row in board:
             col_list = []
             for col in row:
                 col_list.append(col)
         print " ".join(col_list)
-    lookoptions = [lookleft, lookright, lookup, lookdown]
+
+    lookoptions = [lookleft, lookright, lookup, lookdown] # does this have to be down here?
+    # after the functions are defined?

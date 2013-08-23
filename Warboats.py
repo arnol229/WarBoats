@@ -69,12 +69,12 @@ Main Menu:
     
             """)
             Ships = input("How many Ships?(please consider the map size): ")
-            Player1 = Player.Player(Power1, Board(rows, cols), Board(rows, cols), Ships, False)
-            Player2 = Player.Player(Power2, Board(rows, cols), Board(rows, cols), Ships, False)
+            #Board = Board.Board(rows, cols)
+            Player1 = Player.Player(Power1, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
+            Player2 = Player.Player(Power2, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
             Game.Game(Player1, Player2)
                 # Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
                 # Player2 passing the same elements
-                #
     if command == 2:
         #self.login = Authentication()
         pass

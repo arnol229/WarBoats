@@ -5,14 +5,15 @@ class Player(object): # create the player
     MyBoard = None
     EnemyBoard = None
 
-def __init__(self, Power, MyBoard, EnemyBoard, Ships, AI):
+    def __init__(self, Power, MyBoard, EnemyBoard, Ships, AI):
         self.AI = AI
         self.Power = Power
         self.Ships = Ships
-        self.EnemyBoard = Board.GenBoard(EnemyBoard)
-        self.MyBoard = Board.GenBoard(MyBoard)
+        self.EnemyBoard = EnemyBoard
+        self.MyBoard = MyBoard
+        print self.MyBoard
 
-def place_ship(self, ship):
+    def place_ship(self, ship):
         shuffle(self.MyBoard.lookoptions)
         #######
         pos = 0
