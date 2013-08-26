@@ -13,7 +13,6 @@ class Boat(object):
 
     def is_dead(self):
         # check to see if this boat's ship points are all dead
-
         for point in self.points:
             if point.alive:
                 #return early because there is still 1 point alive

@@ -29,17 +29,17 @@ Main Menu:
     if command is 1: 
         rows = 0
         cols = 0
-        board_size = raw_input("""
+        board_size = input("""
 Board Size
 1. 8x8
 2. 4x4
 Please choose:""")
-        if board_size is 1:
+        if board_size is 2:
             rows = 4
             cols = 4
             ships = ["Destroyer", "Cruiser", "WarBoat"]
             print ships
-        if board_size is 2:
+        if board_size is 1:
             rows = 8
             cols = 8
             ships = ["Destroyer", "Destroyer", "Destroyer", "Cruiser", "Cruiser", "WarBoat", "WarBoat"]
@@ -54,26 +54,26 @@ Super Powers!
 3. Deflector Shield
     Please Choose: """)
             power2 = randint(0,3)
-            Player1 = Player(Power1, Board(rows,cols), Board(rows, cols), ships, False)
-            Player2 = Player(Power2, Board(rows,cols), Board(rows, cols), ships, True)
+            Player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, False)
+            Player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, True)
             Play(Player1, Player2)
         if players is 2:
-            Power1 = input("""
+            power1 = input("""
 Super Powers!(Player 1)
 0. No Powers
 1. Radar
 2. Super Gun
 3. Deflector Shield
     Please Choose: """)
-            Power2 = input("""
+            power2 = input("""
 Super Powers!(Player 2)
 0. No Powers
 1. Radar
 2. Super Gun
 3. Deflector Shield
     Please Choose: """)
-            player1 = Player(Power1, Board(rows,cols), Board(rows, cols), ships, False)
-            player2 = Player(Power2, Board(rows,cols), Board(rows, cols), ships, False)
+            player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, False)
+            player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, False)
             Play(player1, player2)
                 # Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
                 # Player2 passing the same elements
