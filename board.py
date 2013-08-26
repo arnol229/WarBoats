@@ -99,5 +99,5 @@ class Board(object): # Creating a board
                 col_list.append(col)
         print " ".join(col_list)
 
-    look_options = [lookleft, lookright, lookup, lookdown] # does this have to be down here?
+    look_options = ['lookleft', 'lookright', 'lookup', 'lookdown'] # does this have to be down here?
     # after the functions are defined?

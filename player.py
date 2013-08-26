@@ -28,7 +28,7 @@ class Player(object): # create the player
         pos = 0
         place = False
         for direction in self.my_board.look_options:
-            place = direction(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
+            place = getattr(self.my_board, direction)(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
         #while not place:
         #    place = self.my_board.look_options[pos](ship, randint(0,self.my_board.rows), randint(0,self.my_board.cols))
         #    print "trying method #: {} ".format(pos)
