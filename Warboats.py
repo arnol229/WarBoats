@@ -13,7 +13,7 @@ import Boats
 run = True
 rows = None
 cols = None
-
+Ships = []
 while run == True:
     print """
 Main Menu:
@@ -35,11 +35,12 @@ Main Menu:
         if BoardSize == 1:
             rows = 4
             cols = 4
+            Ships = ["Destroyer", "Cruiser", "WarBoat"]
         elif BoardSize == 2:
             rows = 8
             cols = 8
-        if BoardSize != 1 and BoardSize != 2:
-            print "you dun fucked up now, boy"
+            Ships = ["Destroyer", "Destroyer", "Destroyer", "Cruiser", "Cruiser", "WarBoat", "WarBoat"]
+
         Players = input("How many players? (1 or 2)")
         if Players == 1:
             Power = input("""Super Powers!
@@ -49,10 +50,9 @@ Main Menu:
             3. Deflector Shield
     
             """)
-
-            Ships = input("How many ships?: ")
-
-            Game.Game((Player(Power, Board(rows, cols), Board(rows, cols), Ships, False)), (Player(randint(0,3), Board(rows, cols), Board(rows, cols), Ships, True)))
+            Player1 = Player.Player(Power1, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
+            Player2 = Player.Player(Power2, Board.Board(rows,cols), Board.Board(rows, cols), Ships, True)
+            Game.Game(Player1, Player2)
         if Players == 2:
             Power1 = input("""Super Powers!(Player1)
             0. No Powers
@@ -68,26 +68,25 @@ Main Menu:
             3. Deflector Shield
     
             """)
-            Ships = input("How many Ships?(please consider the map size): ")
             #Board = Board.Board(rows, cols)
             Player1 = Player.Player(Power1, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
             Player2 = Player.Player(Power2, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
             Game.Game(Player1, Player2)
                 # Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
                 # Player2 passing the same elements
-    if command == 2:
+    elif command == 2:
         #self.login = Authentication()
         pass
-    if command == 3:
+    elif command == 3:
         #display howtoplay.txt
         pass
     
-    if command == 4:
+    elif command == 4:
         print """
         made by bo arnold
         email: arnol229@gmail.com
         """
-    if command == 5:
+    elif command == 5:
         run = False
 
     else:

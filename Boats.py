@@ -12,9 +12,7 @@ class Boat(object):
         if self.Type == "WarBoat":
             self.BoatSpaces = 3
 
-        Board.OpenSpots()
-
-    def IsDead(self):
+    def is_dead(self):
         # check to see if this boat's ship points are all dead
 
         for point in self.points:

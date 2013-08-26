@@ -12,39 +12,40 @@ class Board(object): # Creating a board
         self.Board = self.gen_board(self.Rows, self.Cols)
         #print_board(self.Board)
 
-    def AddBoat(self, Boat):
+    def add_boat(self, Boat):
         self.Boats.append(Boat)
         self.BoatCount += 1
     def lookup(self, Boat, x,y):
         spots = []
         coords = [(x,y),] # This is the first piece of the ship
         piece = 0
-        while piece != Boat.BoatSpaces: #while counter has not hit total ship pieces
+        while piece != boat.BoatSpaces: #while counter has not hit total ship pieces
             piece += 1
             if x - piece >= 0:
                 coords.append((x-piece, y,))
-                if piece == Boat.BoatSpaces: # if all pieces fit
+                if piece == boat.BoatSpaces: # if all pieces fit
                     spots.append(coords)# take all the spots appended to coord and put them in spots
                     for coordinates in spots:
-                        Boat.points.append(Boat.ShipPoints(coordinates[0], coordinates[1]))
+                        boat.points.append(Boat.ShipPoints(coordinates[0], coordinates[1]))
                         # Intended to create a shippoint and append the object to points list in the boat
-                    place = True
+                    return True
                     break
             else: # if they cant be placed, reset coords to x,y for the rest of the while loops
-                place = False
+                return False
     def lookdown(self,boat, x,y):
         #Check Down
         spots = []
         coords = [(x,y),]
         piece = 0
-        while piece != self.Boat.BoatSpaces:
+        while piece != boat.BoatSpaces:
             piece += 1
             if x + piece <= len(row): # not 100% sure on len(row)
                 coords.append((x+piece, y,),)
-                if piece == self.Boat.BoatSpaces -1:
+                if piece == boat.BoatSpaces -1:
                     spots.append(coords)
                     for coordinates in spots:
-                        self.boat.points.append(self.boat.ShipPoints(coordinates[0], coordinates[1]))
+                        boat.points.append(boat.ShipPoints(coordinates[0], coordinates[1]))
+                    return True
                     break
             else:
                 return False
@@ -53,14 +54,15 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),]
         piece = 0
-        while piece != self.Boat.BoatSpaces:
+        while piece != boat.BoatSpaces:
             piece += 1
             if y - piece >= 0:
                 coords.append((x, y-piece,),)
-                if piece == self.Boat.BoatSpaces -1:
+                if piece == boat.BoatSpaces -1:
                     spots.append(coords)
                     for coordinates in spots:
-                        self.boat.points.append(self.boat.ShipPoints(coordinates[0], coordinates[1]))
+                        boat.points.append(boat.ShipPoints(coordinates[0], coordinates[1]))
+                    return True
                     break
             else:
                 return False
@@ -69,14 +71,15 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),]
         piece = 0
-        while piece != self.Boat.BoatSpaces:
+        while piece != boat.BoatSpaces:
             piece += 1
             if y + piece <= len(col): #not sure about this len(col)
                 coords.append((x, y+piece,),)
-                if piece == self.Boat.BoatSpaces -1:
+                if piece == boat.BoatSpaces -1:
                     spots.append(coords)
                     for coordinates in spots:
-                        self.boat.points.append(self.boat.ShipPoints(coordinates[0], coordinates[1]))
+                        boat.points.append(boat.ShipPoints(coordinates[0], coordinates[1]))
+                    return True
                     break
             else:
                 return False
