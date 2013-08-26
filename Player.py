@@ -1,3 +1,5 @@
+from boats import ShipPoints
+
 class Player(object): # create the player
     Ships = None
     Power = None
@@ -12,20 +14,22 @@ class Player(object): # create the player
         self.EnemyBoard = EnemyBoard
         self.MyBoard = MyBoard
         #print self.Ships
+        print "setting up ships..."
         for Ship in self.Ships:
-            print "ship:", Ship
+            print "ship: {}".format(Ship)
             place_ship(Boats.Boat(Ship))
+        print "ships are set."
         #self.MyBoard.print_board(self.MyBoard)
 
     def place_ship(self, ship):
-        shuffle(self.MyBoard.lookoptions)
+        shuffle(self.MyBoard.look_options)
         #######
         ShipSpot = []
         pos = 0
         place = False
-        while place == False:
-            place = self.MyBoard.lookoptions[pos](ship, randint(0,WarBoats.rows), randint(0,Warboats.cols))
-            print "trying method #: ", pos
+        while not place:
+            place = self.MyBoard.look_options[pos](ship, randint(0,WarBoats.rows), randint(0,Warboats.cols))
+            print "trying method #: {} ".format(pos)
             pos += 1 #will this work? lookoption functions will set place to true if it fits
-            if pos == 4:
+            if pos is 4:
                 print "Could not find coordinates to place ship!"

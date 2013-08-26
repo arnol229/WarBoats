@@ -1,20 +1,21 @@
 #Main File
-import Player
-import Board
-import Game
-import Boats
+from player import Player
+from board import Board
+from game import Play
+from boats import Boat
+from random import randint
 # login = False
 # 
-# while login == False:
+# while not login:
 #   intial LOGIN
 #   - if successful, login = True
 # 
 # if login == True: 
-run = True
+running = True
 rows = None
 cols = None
-Ships = []
-while run == True:
+ships = []
+while running:
     print """
 Main Menu:
 1.New Game
@@ -25,69 +26,71 @@ Main Menu:
     """
     command = int(input("Choice #: "))
 
-    if command == 1: 
+    if command is 1: 
         rows = 0
         cols = 0
-        BoardSize = raw_input("""Board Size
-            1. 8x8
-            2. 4x4
-            Please choose:""")
-        if BoardSize == 1:
+        board_size = raw_input("""
+Board Size
+1. 8x8
+2. 4x4
+Please choose:""")
+        if board_size is 1:
             rows = 4
             cols = 4
-            Ships = ["Destroyer", "Cruiser", "WarBoat"]
-        elif BoardSize == 2:
+            ships = ["Destroyer", "Cruiser", "WarBoat"]
+            print ships
+        if board_size is 2:
             rows = 8
             cols = 8
-            Ships = ["Destroyer", "Destroyer", "Destroyer", "Cruiser", "Cruiser", "WarBoat", "WarBoat"]
-
-        Players = input("How many players? (1 or 2)")
-        if Players == 1:
-            Power = input("""Super Powers!
-            0. No Powers
-            1. Radar
-            2. Super Gun
-            3. Deflector Shield
-    
-            """)
-            Player1 = Player.Player(Power1, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
-            Player2 = Player.Player(Power2, Board.Board(rows,cols), Board.Board(rows, cols), Ships, True)
-            Game.Game(Player1, Player2)
-        if Players == 2:
-            Power1 = input("""Super Powers!(Player1)
-            0. No Powers
-            1. Radar
-            2. Super Gun
-            3. Deflector Shield
-    
-            """)
-            Power2 = input("""Super Powers!(Player2)
-            0. No Powers
-            1. Radar
-            2. Super Gun
-            3. Deflector Shield
-    
-            """)
-            #Board = Board.Board(rows, cols)
-            Player1 = Player.Player(Power1, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
-            Player2 = Player.Player(Power2, Board.Board(rows,cols), Board.Board(rows, cols), Ships, False)
-            Game.Game(Player1, Player2)
+            ships = ["Destroyer", "Destroyer", "Destroyer", "Cruiser", "Cruiser", "WarBoat", "WarBoat"]
+            print ships
+        players = input("How many players? (1 or 2)")
+        if players is 1:
+            power1 = input("""
+Super Powers!
+0. No Powers
+1. Radar
+2. Super Gun
+3. Deflector Shield
+    Please Choose: """)
+            power2 = randint(0,3)
+            Player1 = Player(Power1, Board(rows,cols), Board(rows, cols), ships, False)
+            Player2 = Player(Power2, Board(rows,cols), Board(rows, cols), ships, True)
+            Play(Player1, Player2)
+        if players is 2:
+            Power1 = input("""
+Super Powers!(Player 1)
+0. No Powers
+1. Radar
+2. Super Gun
+3. Deflector Shield
+    Please Choose: """)
+            Power2 = input("""
+Super Powers!(Player 2)
+0. No Powers
+1. Radar
+2. Super Gun
+3. Deflector Shield
+    Please Choose: """)
+            player1 = Player(Power1, Board(rows,cols), Board(rows, cols), ships, False)
+            player2 = Player(Power2, Board(rows,cols), Board(rows, cols), ships, False)
+            Play(player1, player2)
                 # Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
                 # Player2 passing the same elements
-    elif command == 2:
+    elif command is 2:
         #self.login = Authentication()
         pass
-    elif command == 3:
+    elif command is 3:
         #display howtoplay.txt
         pass
     
-    elif command == 4:
+    elif command is 4:
         print """
         made by bo arnold
         email: arnol229@gmail.com
         """
-    elif command == 5:
-        run = False
+    elif command is 5:
+        running = False
 
     else:
         print "Error!"

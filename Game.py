@@ -1,4 +1,4 @@
-class Game(object): # Create a game. save these objects to pull up a match history?
+class Play(object): # Create a game. save these objects to pull up a match history?
     Winner = None
     rows = None
     cols = None

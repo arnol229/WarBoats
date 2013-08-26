@@ -1,16 +1,15 @@
 class Boat(object):
-    Alive = True
-    points = []
-    BoatSpaces = None
-
-    def __init__(self, Type): #bring in type later? battleship,cruiser
-        self.Type = Type
-        if self.Type == "Destroyer":
-            self.BoatSpaces = 1
-        if self.Type == "Cruiser":
-            self.BoatSpaces = 2
-        if self.Type == "WarBoat":
-            self.BoatSpaces = 3
+    def __init__(self, type): #bring in type later? battleship,cruiser
+        self.type = type
+        self.boat_spaces = None
+        self.alive = True
+        self.points = []
+        if self.type == "Destroyer":
+            self.boat_spaces = 1
+        if self.type == "Cruiser":
+            self.boat_spaces = 2
+        if self.type == "WarBoat":
+            self.boat_spaces = 3
 
     def is_dead(self):
         # check to see if this boat's ship points are all dead
