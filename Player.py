@@ -1,4 +1,5 @@
 import boats
+from board import Board
 from random import shuffle, randint
 
 class Player(object): # create the player
@@ -22,16 +23,17 @@ class Player(object): # create the player
         #self.my_board.print_board(self.my_board)
 
     def place_ship(self, ship):
-        shuffle(self.my_board.look_options)
+        shuffle(self.my_board.look_directions)
         #######
         ship_spot = []
         pos = 0
         place = False
-        for direction in self.my_board.look_options:
-            place = direction(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
+        for direction in self.my_board.look_directions:###### How do i get the below line to work?
+            place = getattr(Board, "look_directions")(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
+            #place = direction(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
         #while not place:
-        #    place = self.my_board.look_options[pos](ship, randint(0,self.my_board.rows), randint(0,self.my_board.cols))
+        #    place = self.my_board.look_directions[pos](ship, randint(0,self.my_board.rows), randint(0,self.my_board.cols))
         #    print "trying method #: {} ".format(pos)
-        #    pos += 1 #will this work? lookoption functions will set place to true if it fits
+        #    pos += 1 #will this work? look_directions functions will set place to true if it fits
         #    if pos is 4:
         #        print "Could not find coordinates to place ship!"
