@@ -22,7 +22,7 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),] # This is the first piece of the ship
         piece = 0
-        print "anchor piece set at {}".format(coords)
+        print "anchor piece set at {} for {} (up)".format(coords, boat.type)
         while piece is not boat.boat_spaces: #while counter has not hit total ship pieces
             piece += 1
             if x - piece >= 0 and self.check_point(x-piece, y) is True:
@@ -47,7 +47,7 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),]
         piece = 0
-        print "anchor piece set at {}".format(coords)
+        print "anchor piece set at {} for {} (down)".format(coords, boat.type)
         while piece is not boat.boat_spaces:
             piece += 1
             if x + piece <= self.rows and self.check_point(x+piece, y) is True:
@@ -71,7 +71,7 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),]
         piece = 0
-        print "anchor piece set at {}".format(coords)
+        print "anchor piece set at {} for {} (left)".format(coords, boat.type)
         while piece != boat.boat_spaces:
             piece += 1
             if y - piece >= 0 and self.check_point(x, y-piece) is True:
@@ -95,7 +95,7 @@ class Board(object): # Creating a board
         spots = []
         coords = [(x,y),]
         piece = 0
-        print "anchor piece set at {}".format(coords)
+        print "anchor piece set at {} for {} (right)".format(coords, boat.type)
         while piece != boat.boat_spaces:
             piece += 1
             if y + piece <= self.cols and self.check_point(x, y+piece) is True:
@@ -116,17 +116,14 @@ class Board(object): # Creating a board
         for row in range(rows):
             self.board.append(["O"] * cols)
 
-    def print_board(self):
-        col_list = []
-        for row in range(self.rows):
-            for col in range(row):
-                col_list.append(str(col))
-        print " ".join(col_list)
+    def print_board(self, board):
+        for row in self.board:
+            print " ".join(row)
 
     def check_point(self,x,y):
         for point in self.ship_points:
                 if x is point.x and y is point.y:
-                    print "Error! ship located here!"
+                    print "Error! ship located at {},{}!".format(x,y)
                     return False
         return True
 

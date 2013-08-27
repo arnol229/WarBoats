@@ -1,5 +1,4 @@
 import boats
-import pprint
 from board import Board
 from random import shuffle, randint
 
@@ -10,7 +9,7 @@ class Player(object): # create the player
     enemy_board = None
 
     def __init__(self, power, my_board, enemy_board, ships, ai):
-        pp = pprint.PrettyPrinter(indent=4)
+        #do we still need enemy_board?
         self.ai = ai
         self.power = power
         self.ships = ships
@@ -24,13 +23,12 @@ class Player(object): # create the player
             self.my_ships.append(boats.Boat(Ship)) # create the boat and put it in my_ships
         for boat in self.my_ships:
             self.place_ship(boat) #place the boat and give it shippoints
-        for p in self.my_ships:
-            for t in p.points:
-                print "{} point is alive? {}. with x={},y={}".format(p.type, t.alive, t.x, t.y)
+        for boat in self.my_ships:
+            for point in boat.points:
+                self.my_board.board[point.x -1][point.y -1] = boat.id
+                # -1 on the points because the board starts at 1. not 0. 
+
         print "ships are set."
-        #for boat in self.my_ships:
-        #    print boat.points
-        #self.my_board.print_board(self.my_board)
 
     def place_ship(self, ship):
         shuffle(self.my_board.look_directions)
@@ -39,7 +37,7 @@ class Player(object): # create the player
         place = False
         while not place:
             for direction in self.my_board.look_directions:
-                place = getattr(self.my_board, direction)(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
+                place = getattr(self.my_board, direction)(ship, randint(1, self.my_board.rows), randint(1, self.my_board.cols))
                 if place:
                     break
 
