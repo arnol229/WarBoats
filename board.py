@@ -3,13 +3,13 @@ import boats
 
 class Board(object): # Creating a board
     boat_count = None
-    boats = []
     def __init__(self, rows, cols):
         self.boat_count = 0
         self.rows = rows
         self.cols = cols
+        self.ship_points = []
         self.board = []
-        self.board = self.gen_board(self.rows, self.cols)
+        self.gen_board(self.rows, self.cols)
         #print_board(self.Board)
 
     def add_boat(self, boat):
@@ -17,18 +17,24 @@ class Board(object): # Creating a board
         self.boat_count += 1
 
     def lookup(self, boat, x,y):
+        if self.check_point(x,y) is False:
+            return False
         spots = []
         coords = [(x,y),] # This is the first piece of the ship
         piece = 0
+        print "anchor piece set at {}".format(coords)
         while piece is not boat.boat_spaces: #while counter has not hit total ship pieces
             piece += 1
-            if x - piece >= 0:
+            if x - piece >= 0 and self.check_point(x-piece, y) is True:
                 coords.append((x-piece, y,))
                 if piece is boat.boat_spaces: # if all pieces fit
                     spots.append(coords)# take all the spots appended to coord and put them in spots
                     for coordinates in spots:
-                        boat.points.append(boats.ShipPoints(coordinates[0], coordinates[1]))
+                        for xy in coordinates:
+                            boat.points.append(boats.ShipPoints(xy[0], xy[1]))
+                            self.ship_points.append(boats.ShipPoints(xy[0], xy[1]))
                         # Intended to create a shippoint and append the object to points list in the boat
+                    print "ship placed up: {}".format(spots)
                     return True
                     break
             else: # if they cant be placed, reset coords to x,y for the rest of the while loops
@@ -36,17 +42,23 @@ class Board(object): # Creating a board
 
     def lookdown(self, boat, x,y):
         #Check Down
+        if self.check_point(x,y) is False:
+            return False
         spots = []
         coords = [(x,y),]
         piece = 0
+        print "anchor piece set at {}".format(coords)
         while piece is not boat.boat_spaces:
             piece += 1
-            if x + piece <= self.rows: # not 100% sure on len(row)
-                coords.append((x+piece, y,),)
+            if x + piece <= self.rows and self.check_point(x+piece, y) is True:
+                coords.append((x+piece, y),)
                 if piece is boat.boat_spaces:
                     spots.append(coords)
                     for coordinates in spots:
-                        boat.points.append(boats.ShipPoints(coordinates[0], coordinates[1]))
+                        for xy in coordinates:
+                            boat.points.append(boats.ShipPoints(xy[0], xy[1]))
+                            self.ship_points.append(boats.ShipPoints(xy[0], xy[1]))
+                    print "ship placed down: {}".format(spots)
                     return True
                     break
             else:
@@ -54,17 +66,23 @@ class Board(object): # Creating a board
 
     def lookleft(self, boat, x,y):
         # Check left
+        if self.check_point(x,y) is False:
+            return False
         spots = []
         coords = [(x,y),]
         piece = 0
+        print "anchor piece set at {}".format(coords)
         while piece != boat.boat_spaces:
             piece += 1
-            if y - piece >= 0:
+            if y - piece >= 0 and self.check_point(x, y-piece) is True:
                 coords.append((x, y-piece,),)
                 if piece is boat.boat_spaces:
                     spots.append(coords)
                     for coordinates in spots:
-                        boat.points.append(boats.ShipPoints(coordinates[0], coordinates[1]))
+                        for xy in coordinates:
+                            boat.points.append(boats.ShipPoints(xy[0], xy[1]))
+                            self.ship_points.append(boats.ShipPoints(xy[0], xy[1]))
+                    print "ship placed left: {}".format(spots)
                     return True
                     break
             else:
@@ -72,17 +90,23 @@ class Board(object): # Creating a board
 
     def lookright(self, boat, x,y):
         # Check right
+        if self.check_point(x,y) is False:
+            return False
         spots = []
         coords = [(x,y),]
         piece = 0
+        print "anchor piece set at {}".format(coords)
         while piece != boat.boat_spaces:
             piece += 1
-            if y + piece <= self.cols: #not sure about this len(col)s
+            if y + piece <= self.cols and self.check_point(x, y+piece) is True:
                 coords.append((x, y+piece,),)
                 if piece is boat.boat_spaces:
                     spots.append(coords)
                     for coordinates in spots:
-                        boat.points.append(boats.ShipPoints(coordinates[0], coordinates[1]))
+                        for xy in coordinates:
+                            boat.points.append(boats.ShipPoints(xy[0], xy[1]))
+                            self.ship_points.append(boats.ShipPoints(xy[0], xy[1]))
+                    print "ship placed right: {}".format(spots)
                     return True
                     break
             else:
@@ -99,5 +123,12 @@ class Board(object): # Creating a board
                 col_list.append(str(col))
         print " ".join(col_list)
 
-    look_directions = [lookleft, lookright, lookup, lookdown] # does this have to be down here?
+    def check_point(self,x,y):
+        for point in self.ship_points:
+                if x is point.x and y is point.y:
+                    print "Error! ship located here!"
+                    return False
+        return True
+
+    look_directions = ['lookleft', 'lookright', 'lookup', 'lookdown'] # does this have to be down here?
     # after the functions are defined?

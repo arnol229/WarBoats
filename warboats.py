@@ -90,6 +90,7 @@ Super Powers!(Player 2)
         email: arnol229@gmail.com
         """
     elif command is 5:
+        print "goodbye!"
         running = False
 
     else:
