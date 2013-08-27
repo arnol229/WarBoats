@@ -77,7 +77,7 @@ class Board(object): # Creating a board
         piece = 0
         while piece != boat.boat_spaces:
             piece += 1
-            if y + piece <= self.cols: #not sure about this len(col)
+            if y + piece <= self.cols: #not sure about this len(col)s
                 coords.append((x, y+piece,),)
                 if piece is boat.boat_spaces:
                     spots.append(coords)
@@ -95,8 +95,8 @@ class Board(object): # Creating a board
     def print_board(self):
         col_list = []
         for row in range(self.rows):
-            for col in row:
-                col_list.append(col)
+            for col in range(row):
+                col_list.append(str(col))
         print " ".join(col_list)
 
     look_directions = [lookleft, lookright, lookup, lookdown] # does this have to be down here?
