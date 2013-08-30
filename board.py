@@ -3,6 +3,7 @@ import boats
 
 class Board(object): # Creating a board
     boat_count = None
+    look_directions = ['lookleft', 'lookright', 'lookup', 'lookdown']
     def __init__(self, rows, cols):
         self.boat_count = 0
         self.rows = rows
@@ -126,6 +127,3 @@ class Board(object): # Creating a board
                     print "Error! ship located at {},{}!".format(x,y)
                     return False
         return True
-
-    look_directions = ['lookleft', 'lookright', 'lookup', 'lookdown'] # does this have to be down here?
-    # after the functions are defined?

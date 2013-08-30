@@ -40,11 +40,3 @@ class Player(object): # create the player
                 place = getattr(self.my_board, direction)(ship, randint(1, self.my_board.rows), randint(1, self.my_board.cols))
                 if place:
                     break
-
-            #place = direction(ship, randint(0, self.my_board.rows), randint(0, self.my_board.cols))
-        #while not place:
-        #    place = self.my_board.look_directions[pos](ship, randint(0,self.my_board.rows), randint(0,self.my_board.cols))
-        #    print "trying method #: {} ".format(pos)
-        #    pos += 1 #will this work? look_directions functions will set place to true if it fits
-        #    if pos is 4:
-        #        print "Could not find coordinates to place ship!"

@@ -16,17 +16,17 @@ class Play(object): # Create a game. save these objects to pull up a match histo
                 for point in boat.points:
                     print "{} point is alive? {}. with x={},y={}".format(boat.type, point.alive, point.x, point.y)
 
-        #Battle(Player1, Player2)
-    #def battle(): #the stage for fighting. scroll through firing, assessing dmg, using power
-        #while self.Winner == False:
-            #self.fire()
+    #    Battle(player1, player2)
+    #def battle(self, player1, player2): #the stage for fighting. scroll through firing, assessing dmg, using power
+    #    while self.Winner == False:
+    #        self.exchange()
 
-    #def fire(): #how to design firing? ships have multiple cannons?
+    #def exchange(self): #how to design firing? ships have multiple cannons?
     #   if user fire input matches a ShipPoint x and y:
     #       replace x,y on board with "x"
     #   else:
     #       replace x,y with "~"
-    #def check_winner(): #check board.ship_points for quicker determination
+    #def check_winner(self): #check board.ship_points for quicker determination
     #def check_boat(self, boat):#same as is_alive on the boat? dont think i need...
 
     # firing idea:
