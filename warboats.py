@@ -1,7 +1,7 @@
 #Main File
 from player import Player
 from board import Board
-from game import Play
+from game import Game
 from boats import Boat
 from random import randint
 # login = False
@@ -54,9 +54,10 @@ Super Powers!
 3. Deflector Shield
     Please Choose: """)
             power2 = randint(0,3)
-            Player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, False)
-            Player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, True)
-            Play(Player1, Player2)
+            Player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, 1)
+            Player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, 2)
+            winner = None
+            Game(Player1, Player2)
         if players is 2:
             power1 = input("""
 Super Powers!(Player 1)
@@ -72,9 +73,9 @@ Super Powers!(Player 2)
 2. Super Gun
 3. Deflector Shield
     Please Choose: """)
-            player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, False)
-            player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, False)
-            Play(player1, player2)
+            player1 = Player(power1, Board(rows,cols), Board(rows, cols), ships, 1)
+            player2 = Player(power2, Board(rows,cols), Board(rows, cols), ships, 2)
+            Game(player1, player2)
                 # Creates a game (Player 1 with his power, 2 boards(his and enemies), ships to put on the board, and not AI
                 # Player2 passing the same elements
     elif command is 2:
